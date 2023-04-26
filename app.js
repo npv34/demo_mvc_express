@@ -21,14 +21,14 @@ app.use(session({
 
 }))
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', 'views');
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'))
 
 AppDataSource.initialize()
     .then(() => {
@@ -36,10 +36,10 @@ AppDataSource.initialize()
     })
     .catch((error) => console.log(error))
 
-app.use('/auth', authRouter);
+app.use('/admin/auth', authRouter);
 
-app.use('/', isAuthenticated, indexRouter);
-app.use('/users', isAuthenticated, usersRouter);
+app.use('/admin/', isAuthenticated, indexRouter);
+app.use('/admin/users', isAuthenticated, usersRouter);
 
 
 // catch 404 and forward to error handler

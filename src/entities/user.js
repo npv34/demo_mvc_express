@@ -18,6 +18,9 @@ module.exports = new EntitySchema({
         username: {
             type: "varchar",
         },
+        role: {
+            type: "varchar",
+        },
         address: {
             type: "varchar",
         },
